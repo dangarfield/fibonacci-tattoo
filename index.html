@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Fractional Fibonacci Tattoo</title>
+</head>
+
+<body>
+
+    <div class="container-fluid" id="chartContainer" style="width: 100%">
+        <h2>How to create a unique Fibonacci Tattoo?</h2>
+        <p>I was thinking about tattoos and wanted something unique. I love maths, programming and the golden ratio, for many reasons: connection to art, science, the divine fingerprint, the observable natural laws, simplicity in complexity, complexity in simplicity.</p>
+        <p>So... I thought what tattoo could I get that would show this, other than the standard golden ratio swirls.</p>
+        <p>It turns out that you can plot a fractional increment of the numbers BETWEEN the fibnacci numbers. 0.1 etc.</p>
+        <p>Binet's formula calculates the 'nth' value of the Fibonacci sequence:</p>
+        <img src="https://mathworld.wolfram.com/images/equations/BinetsFibonacciNumberFormula/Inline6.svg" width="200px" />
+        <p>It also works with fractional values, however, you cannot have a negative base with the fractional exponent, so instead, you have to calculate it using complex numbers.</p>
+        <p>Each intersection of the y axis shows the fibonacci sequence numnbers, 0, 1, 1, 2, 3, 5, 8 etc</p>
+        <p>The results are below:</p>
+
+        <h2>Tattoo 1 - 6 Fibonacci numbers</h2>
+        <canvas id="chart-1"></canvas>
+        <h2>Tattoo 2 - 7 Fibonacci numbers</h2>
+        <canvas id="chart-2"></canvas>
+        <h2>Tattoo 1 - 6 Fibonacci numbers - With chart</h2>
+        <canvas id="chart-3"></canvas>
+        <h2>Tattoo 2 - 7 Fibonacci numbers - With chart</h2>
+        <canvas id="chart-4"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"></script>
+
+    <script>
+        const normalChartOptions = {
+            legend: {
+                position: 'chartArea'
+            },
+            events: [],
+            layout: {
+                padding: {
+                    left: 0
+                },
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+        const blankChartOptions = {
+            legend: {
+                display: false
+            },
+            events: [],
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5
+                }
+            },
+            scales: {
+                yAxes: [{
+                    display: false,
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+
+                }],
+                xAxes: [{
+                    display: false,
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+
+                }]
+
+            }
+        }
+        const createData = (max, nsamples, color) => {
+
+            const phi = math.complex((1 + Math.sqrt(5)) / 2, 0)
+            const phiNeg = math.complex((1 - Math.sqrt(5)) / 2, 0)
+            const sqr5 = math.complex(Math.sqrt(5), 0)
+
+            const fibData = []
+            for (let n = 0; n < (max + 1) * nsamples; n++) {
+                const nT = n / nsamples
+                const a = math.pow(phi, nT)
+                const b = math.pow(phiNeg, nT)
+                const c = math.pow(2, nT)
+
+                // const f = (phi ** n - ((-phi) ** -n)) / sqr5Complex
+                const f = math.divide(math.subtract(a, b), sqr5)
+
+                // console.log('f', n, nT, '---', f, '---', a, b, c)
+
+                fibData.push({
+                    x: f.re,
+                    y: f.im
+                })
+            }
+            // console.log('fibData', fibData)
+
+            return {
+                datasets: [{
+                    label: '0,1,1,2,3,5,8',
+                    data: fibData,
+                    backgroundColor: color,
+                    // backgroundColor: 'black',
+                    pointRadius: 0,
+                    borderColor: color,
+                    // borderColor: 'black',
+                    borderWidth: 3,
+
+                    showLine: true,
+                    fill: false,
+                }]
+            }
+
+
+        }
+        const init = () => {
+            new Chart(document.getElementById('chart-1').getContext('2d'), {
+                type: 'scatter',
+                data: createData(4, 100, 'black'),
+                options: blankChartOptions
+            })
+            new Chart(document.getElementById('chart-2').getContext('2d'), {
+                type: 'scatter',
+                data: createData(5, 100, 'black'),
+                options: blankChartOptions
+            })
+            new Chart(document.getElementById('chart-3').getContext('2d'), {
+                type: 'scatter',
+                data: createData(4, 100, 'rgb(255, 99, 132)'),
+                options: normalChartOptions
+            })
+            new Chart(document.getElementById('chart-4').getContext('2d'), {
+                type: 'scatter',
+                data: createData(5, 100, 'rgb(255, 99, 132)'),
+                options: normalChartOptions
+            })
+
+        }
+
+
+        window.onload = function() {
+            init()
+        }
+    </script>
+</body>
+
+</html>
