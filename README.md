@@ -1,11 +1,11 @@
 # Tattoo Idea Based on Fractional Fibonacci Numbers
 > Plotting fractional Fibonacci numbers using complex numbers
 
-![alt text](https://fib-tattoo.png "DeepL Text Example")
+![alt text](https://gitcdn.link/cdn/dangarfield/fibonacci-tattoo/main/fib-tattoo.png "Fractional Fibonacci")
 
 ## How to create a unique Fibonacci Tattoo?
 
-[Live page](https://sdf.com)
+[Live page](https://dangarfield.github.io/fibonacci-tattoo/)
 
 I was thinking about tattoos and wanted something unique. I love maths, programming and the golden ratio, for many reasons: connection to art, science, the divine fingerprint, the observable natural laws, simplicity in complexity, complexity in simplicity.
 
@@ -23,4 +23,7 @@ Each intersection of the y axis shows the fibonacci sequence numnbers, 0, 1, 1, 
 
 The results are found on the live page:
 
-[Live page](https://sdf.com)
+[Live page](https://dangarfield.github.io/fibonacci-tattoo/)
+
+Kudos to:
+https://www.youtube.com/watch?v=ghxQA3vvhsk&t
