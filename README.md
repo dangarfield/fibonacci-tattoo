@@ -7,7 +7,7 @@
 
 [Live page](https://dangarfield.github.io/fibonacci-tattoo/)
 
-I was thinking about tattoos and wanted something unique. I love maths, programming and the golden ratio, for many reasons: connection to art, science, the divine fingerprint, the observable natural laws, simplicity in complexity, complexity in simplicity.
+I was thinking about tattoos and wanted something unique. I love maths, programming and the golden ratio, for many reasons: connection to art, science, a divine fingerprint / signature, the observable natural laws, simplicity in complexity, complexity in simplicity.
 
 So... I thought... what tattoo could I get that would show this, other than the standard golden ratio swirls?
 
