@@ -97,6 +97,9 @@
             const phi = math.complex((1 + Math.sqrt(5)) / 2, 0)
             const phiNeg = math.complex((1 - Math.sqrt(5)) / 2, 0)
             const sqr5 = math.complex(Math.sqrt(5), 0)
+            console.log('phi', phi)
+            console.log('phiNeg', phiNeg)
+            console.log('sqr5', sqr5)
 
             const fibData = []
             for (let n = 0; n < (max + 1) * nsamples; n++) {
@@ -108,26 +111,23 @@
                 // const f = (phi ** n - ((-phi) ** -n)) / sqr5Complex
                 const f = math.divide(math.subtract(a, b), sqr5)
 
-                // console.log('f', n, nT, '---', f, '---', a, b, c)
+                console.log('f', n, nT, '---', f, '---', a, b, math.subtract(a, b), c)
 
                 fibData.push({
                     x: f.re,
-                    y: f.im
+                    y: nsamples === 1 ? Math.round(f.im) : f.im
                 })
             }
             // console.log('fibData', fibData)
 
             return {
                 datasets: [{
-                    label: '0,1,1,2,3,5,8',
+                    label: max === 4 ? '0,1,1,2,3,5,8' : '0,1,1,2,3,5,8,13',
                     data: fibData,
                     backgroundColor: color,
-                    // backgroundColor: 'black',
                     pointRadius: 0,
                     borderColor: color,
-                    // borderColor: 'black',
                     borderWidth: 3,
-
                     showLine: true,
                     fill: false,
                 }]
